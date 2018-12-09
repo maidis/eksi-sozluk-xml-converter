@@ -22,6 +22,14 @@ eksi-sozluk-xml-converter'ı kullanarak göze hoş gelen bir PDF dosyası üreti
 
 ![eksi-sozluk-xml-converter2](/screenshots/eksi-sozluk-xml-converter2.png)
 
+## Kullananlar
+
+eksi-sozluk-xml-converter'ı bildiğim kadarıyla çeşitli devlet kurumları ve özel şirketler kullanmaktadır. Bunlardan bazıları:
+
+- [maidis](https://www.dropbox.com/s/0450xp3gb2wem2u/maidis-eksisozluk.pdf?dl=0)
+
+Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebilirsiniz.
+
 ## Yapılacaklar
 
 - Basit bir çalışan grafik arayüz yap
