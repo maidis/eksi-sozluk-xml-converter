@@ -44,12 +44,19 @@ EksiXML::EksiXML(QWidget *parent) :
 
         std::string str3 =  elt2.attribute("date").toStdString();
 
+
+        // br tags must be changed at the end
+        replaceAll(str2, "&", "&amp;");
+        replaceAll(str2, ">", "&gt;");
+        replaceAll(str2, "<", "&lt;");
         replaceAll(str2, "\n", "<br>");
 
         str3.replace(10, 1, " ");
 
         QString qstr = QString::fromStdString(str);
 
+        // https://stackoverflow.com/questions/7696159/how-can-i-convert-entity-characterescape-character-to-html-in-qt
+        // https://wiki.qt.io/Transition_from_Qt_4.x_to_Qt5#Qt::escape_is_deprecated
         QString qstr2 = QString::fromStdString(str2);
 
         replaceAllTag(qstr2, "`", "<i style=\"color:#7faa6e;\">", "</i>");
