@@ -30,19 +30,21 @@ EksiXML::EksiXML(QWidget *parent) :
     QString html = body  + img + "<h1 align=\"center\" style=\"color:#87b54f;\">" + nick + "</h1>";
 
     QString icerik = "<p></p>";
+    QString eksi = "https://eksisozluk.com/";
+    QString eksiEntry = "https://eksisozluk.com/entry/";
 
     for (; !elt2.isNull(); elt2 = elt2.nextSiblingElement("entry"))
     {
         QDomElement elt3 = elt2.previousSiblingElement("entry");
-        std::string str = "";
+        QString str = "";
         if (elt3.attribute("title").toStdString() != elt2.attribute("title").toStdString())
-            str =  elt2.attribute("title").toStdString();
+            str =  elt2.attribute("title");
 
-        std::string str2 =  elt2.text().toStdString();
+        QString str2 =  elt2.text();
 
         //std::cout << str2 << std::endl;
 
-        std::string str3 =  elt2.attribute("date").toStdString();
+        QString str3 =  elt2.attribute("date");
 
 
         // br tags must be changed at the end
@@ -53,21 +55,24 @@ EksiXML::EksiXML(QWidget *parent) :
 
         str3.replace(10, 1, " ");
 
-        QString qstr = QString::fromStdString(str);
+        QString qstr = str;
 
         // https://stackoverflow.com/questions/7696159/how-can-i-convert-entity-characterescape-character-to-html-in-qt
         // https://wiki.qt.io/Transition_from_Qt_4.x_to_Qt5#Qt::escape_is_deprecated
-        QString qstr2 = QString::fromStdString(str2);
+        QString qstr2 = str2;
 
         replaceAllTag(qstr2, "`", "<i style=\"color:#7faa6e;\">", "</i>");
 
-        QString qstr3 = QString::fromStdString(str3);
+        qstr2.replace(QRegExp("(bkz: ([a-z0-9-+!'^+%&/=?ığüşöç ]*))"), "bkz: <i style=\"color:#7faa6e;\">\\2</i>");
+
+        QString qstr3 = str3;
 
         QString htmlyeni = "<h1 style=\"color:#48813d;\">" + qstr + "</h1>";
 
         QString icerik = "<p>" + qstr2 + "</p>";
 
-        QString tarih = "<p style=\"color:#5d5d5d;\" align=\"right\">" + qstr3 + "</p>";
+        // <a href="url">link text</a> elt2.attribute("id").toStdString()
+        QString tarih = "<p style=\"color:#5d5d5d;\" align=\"right\"> <a style=\"text-decoration:none; color:#5d5d5d;\" href=\"" + eksiEntry + elt2.attribute("id") + "\">" + qstr3 + "</a></p>";
 
         html = html + htmlyeni + icerik + tarih;
     }
@@ -83,11 +88,11 @@ EksiXML::EksiXML(QWidget *parent) :
     document.print(&printer);
 }
 
-void EksiXML::replaceAll(std::string& str, const std::string& from, const std::string& to) {
-    if(from.empty())
+void EksiXML::replaceAll(QString& str, const QString& from, const QString& to) {
+    if(from.isEmpty())
         return;
     size_t start_pos = 0;
-    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+    while((start_pos = str.indexOf(from, start_pos)) != std::string::npos) {
         str.replace(start_pos, from.length(), to);
         start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
     }

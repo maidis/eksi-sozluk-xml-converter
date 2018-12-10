@@ -11,10 +11,10 @@
 #include <QtGlobal>
 #include <QTextStream>
 #include <QFileDialog>
+#include <QRegularExpression>
+#include <QRegExp>
 
 #include <iostream>
-#include <algorithm>
-#include <string>
 
 namespace Ui {
 class EksiXML;
@@ -26,7 +26,7 @@ class EksiXML : public QMainWindow
 
 public:
     explicit EksiXML(QWidget *parent = nullptr);
-    void replaceAll(std::string& str, const std::string& from, const std::string& to);
+    void replaceAll(QString& str, const QString& from, const QString& to);
     void replaceAllTag(QString& str, const QString& from, const QString& to, const QString& to2);
     ~EksiXML();
 

@@ -43,7 +43,7 @@ Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebil
 - Çıktıyı tarihsel olarak vermenin yanı sıra alfabetik olarak da oluşturma seçeneği
 - Akıllı bkz'lar için biçimlendirme ekle (yerinde üst karakter olarak, sayfa sonuna veya belge sonuna dipnot olarak)
 - spoiler'lar için biçimlendirme (alıntı şeklinde)
-- bkz'lar için biçimlendirme
+- ~~bkz'lar için biçimlendirme~~
 
 ## Alternatifler
 
