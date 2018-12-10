@@ -36,6 +36,7 @@ Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebil
 - Arayüzde oluşturulacak dosya için özelleştirmeler ekle
 - Düz metin çıktısı
 - Markdown çıktısı
+- JSON çıktısı
 - Dış bağlantıları tıklanabilir yap
 - Resimlere verilmiş bağlantıları resim olarak çıktıya ekleme seçeneği
 - YouTube'a verilmiş bağlantıları videonun önizleme resmi olarak çıktıya ekleme seçeneği
@@ -50,6 +51,7 @@ Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebil
 eksi-sozluk-xml-converter, bu iş için yazılmış tek araç değil. Ayrıca şu araçlara da göz atabilirsiniz:
 
 - [EksiXMLtoPDF](https://github.com/Borgen/EksiXMLtoPDF)
+- [Detox](https://youreads.net/baslik/detox--45069)
 
 ## Uyarı
 
