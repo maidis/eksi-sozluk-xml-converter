@@ -46,12 +46,16 @@ Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebil
 - spoiler'lar için biçimlendirme (alıntı şeklinde)
 - ~~bkz'lar için biçimlendirme~~
 
+# Bilinen Hatalar
+- bkz'da kesme ve amp
+
 ## Alternatifler
 
-eksi-sozluk-xml-converter, bu iş için yazılmış tek araç değil. Ayrıca şu araçlara da göz atabilirsiniz:
+eksi-sozluk-xml-converter, bu iş için yazılmış tek araç değil. Ayrıca şu araçlara da göz atabilirsiniz (şimdilik fark edilme sırasına göre):
 
 - [EksiXMLtoPDF](https://github.com/Borgen/EksiXMLtoPDF)
 - [Detox](https://youreads.net/baslik/detox--45069)
+- [ekşi yedek okuma şeysi](https://eksisozluk.com/eksi-yedek-okuma-seysi--4987996)
 
 ## Uyarı
 
