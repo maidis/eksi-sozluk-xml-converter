@@ -6,9 +6,46 @@ EksiXML::EksiXML(QWidget *parent) :
     ui(new Ui::EksiXML)
 {
     ui->setupUi(this);
+}
 
+void EksiXML::replaceAll(QString& str, const QString& from, const QString& to) {
+    if(from.isEmpty())
+        return;
+    size_t start_pos = 0;
+    while((start_pos = str.indexOf(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+    }
+}
+
+void EksiXML::replaceAllTag(QString& str, const QString& from, const QString& to, const QString& to2) {
+    if(from.isEmpty())
+        return;
+    size_t start_pos = 0;
+    bool ilk = 1;
+    while ((start_pos = str.indexOf(from, start_pos)) != -1)
+    {
+        if (ilk)
+        {
+            str.replace(start_pos, from.length(), to);
+            ilk = 0;
+        }
+        else
+        {
+            str.replace(start_pos, from.length(), to2);
+            //str.replace(start_pos, from.length(), to2.insert(1, QString("/")));
+            ilk = 1;
+        }
+        start_pos += 1;
+        //qDebug() << "Found <b> tag at index position" << j;
+        //++start_pos;
+    }
+}
+
+void EksiXML::convertToPDF(QString &str)
+{
     QDomDocument doc;
-    QFile file("maidis.xml");
+    QFile file(str);
     if (!file.open(QIODevice::ReadOnly) || !doc.setContent(&file))
         return;
 
@@ -19,7 +56,7 @@ EksiXML::EksiXML(QWidget *parent) :
     QString body = "<body style=\"background-color:#ececec;\">";
 
     //QString img = "<img src=\"eksisozluk_logo.png\" alt=\"Ekşi Sözlük\" height=\"48\" width=\"288\">";
-    QString img = "<div style=\"text-align: center\"><a href=\"https://eksisozluk.com/\"><img src=\"eksisozluk_logo.png\" align=\"center\" height=\"96\" width=\"576\"></a></div>";
+    QString img = "<div style=\"text-align: center\"><a href=\"https://eksisozluk.com/\"><img src=\"eksisozluk_logo.png\" align=\"center\" height=\"48\" width=\"288\"></a></div>";
 
 
     //QString test = "Some text with a footnote.<sup><a href=\"#fn1\" id=\"ref1\">1</a></sup>";
@@ -77,49 +114,23 @@ EksiXML::EksiXML(QWidget *parent) :
         html = html + htmlyeni + icerik + tarih;
     }
 
+    fileInfo = QFileInfo(file);
+
     QTextDocument document;
     document.setHtml(html);
 
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
 
-    printer.setOutputFileName("test.pdf");
+    printer.setOutputFileName(fileInfo.baseName() + ".pdf");
 
     document.print(&printer);
-}
 
-void EksiXML::replaceAll(QString& str, const QString& from, const QString& to) {
-    if(from.isEmpty())
-        return;
-    size_t start_pos = 0;
-    while((start_pos = str.indexOf(from, start_pos)) != std::string::npos) {
-        str.replace(start_pos, from.length(), to);
-        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
-    }
-}
-
-void EksiXML::replaceAllTag(QString& str, const QString& from, const QString& to, const QString& to2) {
-    if(from.isEmpty())
-        return;
-    size_t start_pos = 0;
-    bool ilk = 1;
-    while ((start_pos = str.indexOf(from, start_pos)) != -1)
-    {
-        if (ilk)
-        {
-            str.replace(start_pos, from.length(), to);
-            ilk = 0;
-        }
-        else
-        {
-            str.replace(start_pos, from.length(), to2);
-            //str.replace(start_pos, from.length(), to2.insert(1, QString("/")));
-            ilk = 1;
-        }
-        start_pos += 1;
-        //qDebug() << "Found <b> tag at index position" << j;
-        //++start_pos;
-    }
+    QFile file2(fileInfo.baseName() + ".txt");
+    file2.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&file2);
+    out << document.toPlainText();
+    file2.close();
 }
 
 EksiXML::~EksiXML()
@@ -129,6 +140,11 @@ EksiXML::~EksiXML()
 
 void EksiXML::on_openXMLBtn_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open a XML file");
-    ui->lineEdit->setText(filename);
+    fileName = QFileDialog::getOpenFileName(this, "Open a XML file", ".", "XML files (*.xml)");
+    ui->lineEdit->setText(fileName);
+}
+
+void EksiXML::on_pushButton_clicked()
+{
+    convertToPDF(fileName);
 }

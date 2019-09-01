@@ -12,15 +12,15 @@ Ekşi Sözlük'teki yazılarını silip giden yazarlar, yazdıklarını daha oku
 
 Ekşi Sözlük'e yıllarınızı verip faydalı veya eğlenceli içerikler oluşturun.
 
-![eksi-sozluk-xml-converter0](/screenshots/eksi-sozluk-xml-converter0.png)
+![eksi-sozluk-xml-converter0](./screenshots/eksi-sozluk-xml-converter0.png)
 
 Çeşitli nedenlerle kullanmak için Ekşi Sözlük'ten ayarlar > yedek yolunu takip ederek yedek dosyanızı indirin.
 
-![eksi-sozluk-xml-converter1](/screenshots/eksi-sozluk-xml-converter1.png)
+![eksi-sozluk-xml-converter1](./screenshots/eksi-sozluk-xml-converter1.png)
 
 eksi-sozluk-xml-converter'ı kullanarak göze hoş gelen bir PDF dosyası üretin. Bunun için şimdilik kaynak koda ellemeniz gerekiyor ama grafik arayüz bittiği zaman buna gerek kalmayacak. Şu anda programın çalışması için maidis.xml yerine sizin yedek dosyanızın ismini yazmanız ve bu dosyayı programın çalıştırılabilir dosyasının oluştuğu yere koymanız gerekiyor.
 
-![eksi-sozluk-xml-converter2](/screenshots/eksi-sozluk-xml-converter2.png)
+![eksi-sozluk-xml-converter2](./screenshots/eksi-sozluk-xml-converter2.png)
 
 ## Kullananlar
 
@@ -32,7 +32,7 @@ Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebil
 
 ## Yapılacaklar
 
-- Basit bir çalışan grafik arayüz yap
+- ~~Basit bir grafik arayüz yap~~
 - Arayüzde oluşturulacak dosya için özelleştirmeler ekle
 - Düz metin çıktısı
 - Markdown çıktısı
@@ -56,6 +56,7 @@ eksi-sozluk-xml-converter, bu iş için yazılmış tek araç değil. Ayrıca ş
 - [EksiXMLtoPDF](https://github.com/Borgen/EksiXMLtoPDF)
 - [Detox](https://youreads.net/baslik/detox--45069)
 - [ekşi yedek okuma şeysi](https://eksisozluk.com/eksi-yedek-okuma-seysi--4987996)
+- [ekşi yedek](https://eksiyedek.subicon.net/)
 
 ## Uyarı
 
