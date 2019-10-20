@@ -15,6 +15,8 @@
 #include <QRegularExpression>
 #include <QRegExp>
 
+#include <QTextBrowser>
+
 #include <iostream>
 
 namespace Ui {
@@ -29,18 +31,19 @@ public:
     explicit EksiXML(QWidget *parent = nullptr);
     void replaceAll(QString& str, const QString& from, const QString& to);
     void replaceAllTag(QString& str, const QString& from, const QString& to, const QString& to2);
-    void convertToPDF(QString& str);
+    void convert(QString& str);
     ~EksiXML();
 
 private slots:
     void on_openXMLBtn_clicked();
-
-    void on_pushButton_clicked();
+    void on_convertBtn_clicked();
+    void on_saveBtn_clicked();
 
 private:
     Ui::EksiXML *ui;
-    QString fileName;
+    QString fileName, saveFileName;
     QFileInfo fileInfo;
+    QTextDocument document;
 };
 
 #endif // EKSIXML_H

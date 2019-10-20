@@ -6,6 +6,9 @@ EksiXML::EksiXML(QWidget *parent) :
     ui(new Ui::EksiXML)
 {
     ui->setupUi(this);
+
+    ui->convertBtn->setDisabled(true);
+    ui->saveBtn->setDisabled(true);
 }
 
 void EksiXML::replaceAll(QString& str, const QString& from, const QString& to) {
@@ -42,7 +45,7 @@ void EksiXML::replaceAllTag(QString& str, const QString& from, const QString& to
     }
 }
 
-void EksiXML::convertToPDF(QString &str)
+void EksiXML::convert(QString &str)
 {
     QDomDocument doc;
     QFile file(str);
@@ -106,7 +109,7 @@ void EksiXML::convertToPDF(QString &str)
 
         QString htmlyeni = "<h1 style=\"color:#48813d;\">" + qstr + "</h1>";
 
-        QString icerik = "<p>" + qstr2 + "</p>";
+        icerik = "<p>" + qstr2 + "</p>";
 
         // <a href="url">link text</a> elt2.attribute("id").toStdString()
         QString tarih = "<p style=\"color:#5d5d5d;\" align=\"right\"> <a style=\"text-decoration:none; color:#5d5d5d;\" href=\"" + eksiEntry + elt2.attribute("id") + "\">" + qstr3 + "</a></p>";
@@ -116,9 +119,41 @@ void EksiXML::convertToPDF(QString &str)
 
     fileInfo = QFileInfo(file);
 
-    QTextDocument document;
     document.setHtml(html);
+    ui->textBrowser->setText(html);
 
+    if(!document.isEmpty())
+    {
+        ui->saveBtn->setEnabled(true);
+    }
+}
+
+EksiXML::~EksiXML()
+{
+    delete ui;
+}
+
+void EksiXML::on_openXMLBtn_clicked()
+{
+    fileName = QFileDialog::getOpenFileName(this, "Open a XML file", ".", "XML files (*.xml)");
+    ui->lineEdit->setText(fileName);
+    if (!fileName.isNull())
+    {
+        ui->convertBtn->setEnabled(true);
+    }
+}
+
+void EksiXML::on_convertBtn_clicked()
+{
+    convert(fileName);
+}
+
+void EksiXML::on_saveBtn_clicked()
+{
+
+    /*QString saveFileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Save Address Book"), "",
+                                                    tr("Address Book (*.abk);;All Files (*)"));*/
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
 
@@ -131,20 +166,10 @@ void EksiXML::convertToPDF(QString &str)
     QTextStream out(&file2);
     out << document.toPlainText();
     file2.close();
-}
 
-EksiXML::~EksiXML()
-{
-    delete ui;
-}
-
-void EksiXML::on_openXMLBtn_clicked()
-{
-    fileName = QFileDialog::getOpenFileName(this, "Open a XML file", ".", "XML files (*.xml)");
-    ui->lineEdit->setText(fileName);
-}
-
-void EksiXML::on_pushButton_clicked()
-{
-    convertToPDF(fileName);
+    QFile file3(fileInfo.baseName() + ".html");
+    file3.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out2(&file3);
+    out2 << document.toHtml();
+    file3.close();
 }

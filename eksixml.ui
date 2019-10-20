@@ -14,42 +14,43 @@
    <string>EksiXML</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>411</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="openXMLBtn">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>50</y>
-      <width>211</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Open Ekşi Sözlük XML Backup</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>50</y>
-      <width>84</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Convert</string>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="openXMLBtn">
+          <property name="text">
+           <string>Open Ekşi Sözlük XML Backup</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="convertBtn">
+          <property name="text">
+           <string>Convert</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveBtn">
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="textBrowser"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
