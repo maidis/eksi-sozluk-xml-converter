@@ -55,6 +55,7 @@ Siz de eksi-sozluk-xml-converter'ı kullanıyorsanız listeye isminizi ekletebil
 
 eksi-sozluk-xml-converter, bu iş için yazılmış tek araç değil. Ayrıca şu araçlara da göz atabilirsiniz:
 
+- [ekşi sözlük yedek okuma şeysi](https://github.com/ssg/eksi-yedek)
 - [EksiXMLtoPDF](https://github.com/Borgen/EksiXMLtoPDF)
 - [Detox](https://youreads.net/baslik/detox--45069)
 - [ekşi yedek okuma şeysi](https://eksisozluk.com/eksi-yedek-okuma-seysi--4987996)
